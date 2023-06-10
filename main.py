@@ -12,8 +12,10 @@ from utils.strava_api import get_access_token, get_activities, get_start_date
 from utils.webhook import Message, post_to_webhook
 
 # Read config file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+config_file_path = os.path.join(current_dir, "pipeline.ini")
 parser = configparser.ConfigParser()
-parser.read("pipeline.ini")
+parser.read(config_file_path)
 db = parser.get("postgres", "database")
 client_id = parser.get("strava", "client_id")
 client_secret = parser.get("strava", "client_secret")
