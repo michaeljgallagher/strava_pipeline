@@ -17,6 +17,10 @@ config_file_path = os.path.join(current_dir, "pipeline.ini")
 parser = configparser.ConfigParser()
 parser.read(config_file_path)
 db = parser.get("postgres", "database")
+username = parser.get("postgres", "username")
+password = parser.get("postgres", "password")
+host = parser.get("postgres", "host")
+port = parser.get("postgres", "port")
 client_id = parser.get("strava", "client_id")
 client_secret = parser.get("strava", "client_secret")
 refresh_token = parser.get("strava", "refresh_token")
@@ -49,7 +53,9 @@ logger.info("Strava ETL pipeline started")
 
 try:
     # Connect to Postgres, get most recent activity time
-    conn = psycopg2.connect(database=db)
+    conn = psycopg2.connect(
+        database=db, user=username, password=password, host=host, port=port
+    )
     most_recent = get_most_recent(conn, "start_date_history", "last_start_date")
     logger.info(f"Fetching activities starting from: {most_recent}")
 
