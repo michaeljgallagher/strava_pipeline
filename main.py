@@ -22,7 +22,7 @@ def main():
     config = namedtuple("config", parser.sections())(
         **{
             section: namedtuple(section, options)(*parser[section].values())
-            for section, options in parser.items()
+            for section, options in (x for x in parser.items() if x[0] != "DEFAULT")
         }
     )
 
