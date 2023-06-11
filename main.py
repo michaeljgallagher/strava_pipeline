@@ -80,8 +80,8 @@ try:
     save_to_csv(
         activities,
         f"{output_dirs.csv}/{now}.csv",
-        fields.raw_columns,
-        fields.csv_columns,
+        fields.raw_columns.split(", "),
+        fields.csv_columns.split(", "),
     )
     logger.info(f"Saved {len(activities)} activities to {output_dirs.csv}/{now}.csv")
 
