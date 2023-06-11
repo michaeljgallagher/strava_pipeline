@@ -5,18 +5,14 @@ from time import sleep
 import requests
 
 
-def get_access_token(client_id, client_secret, refresh_token):
+def get_access_token(client_id: str, client_secret: str, refresh_token: str) -> str:
     """
     Retrieves the access token from Strava API using the provided client ID, client secret, and refresh token.
 
     :param client_id: The client ID.
-    :type client_id: str
     :param client_secret: The client secret.
-    :type client_secret: str
     :param refresh_token: The refresh token.
-    :type refresh_token: str
     :return: The access token.
-    :rtype: str
     :raises RuntimeError: If there is an error retrieving the access token.
     """
     payload = {
@@ -33,16 +29,13 @@ def get_access_token(client_id, client_secret, refresh_token):
         raise RuntimeError(res.text)
 
 
-def get_activities(access_token, start_date):
+def get_activities(access_token: str, start_date: int) -> list:
     """
     Retrieves the activities from Strava API starting from the specified date.
 
     :param access_token: The access token.
-    :type access_token: str
     :param start_date: The start date in UNIX timestamp format.
-    :type start_date: int
     :return: The list of activities.
-    :rtype: list
     :raises RuntimeError: If there is an error retrieving the activities.
     """
     activities = []
@@ -69,14 +62,12 @@ def get_activities(access_token, start_date):
     return activities
 
 
-def get_start_date(activity):
+def get_start_date(activity: dict) -> int:
     """
     Retrieves the start date of an activity.
 
     :param activity: The activity data.
-    :type activity: dict
     :return: The start date in UNIX timestamp format.
-    :rtype: int
     """
     start_date = activity["start_date"]
     return int(datetime.fromisoformat(start_date).timestamp())

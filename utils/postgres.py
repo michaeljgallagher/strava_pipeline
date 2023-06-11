@@ -1,4 +1,9 @@
-def push_csv_to_postgres(conn, csv_path, table_name):
+import psycopg2
+
+
+def push_csv_to_postgres(
+    conn: psycopg2.extensions.connection, csv_path: str, table_name: str
+) -> None:
     """
     Pushes the data from a CSV file to a PostgreSQL table.
 
@@ -14,7 +19,9 @@ def push_csv_to_postgres(conn, csv_path, table_name):
     cursor.close()
 
 
-def get_most_recent(conn, table_name, col_name):
+def get_most_recent(
+    conn: psycopg2.extensions.connection, table_name: str, col_name: str
+) -> any:
     """
     Retrieves the most recent value from a column in a PostgreSQL table.
 
@@ -31,7 +38,12 @@ def get_most_recent(conn, table_name, col_name):
     return res
 
 
-def push_last_start_date(conn, start_date, table_name, col_name):
+def push_last_start_date(
+    conn: psycopg2.extensions.connection,
+    start_date: int,
+    table_name: str,
+    col_name: str,
+) -> None:
     """
     Pushes the last start date to a column in a PostgreSQL table.
 

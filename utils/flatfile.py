@@ -1,19 +1,19 @@
 import os
 from csv import DictWriter
+from typing import Dict, List, Union
 
 from utils.conversions import c_to_f, meters_to_feet, meters_to_miles, ms_to_mph
 
 
-def parse_activity(activity, cols):
+def parse_activity(
+    activity: Dict[str, Union[int, float, List[float]]], cols: List[str]
+) -> Dict[str, Union[int, float, str]]:
     """
     Parses the activity data and applies the appropriate conversions based on the column name.
 
     :param activity: The activity data.
-    :type activity: dict
     :param cols: The list of columns to parse.
-    :type cols: list
     :return: The parsed activity data.
-    :rtype: dict
     """
     res = {}
     for col in cols:
@@ -41,18 +41,19 @@ def parse_activity(activity, cols):
     return res
 
 
-def save_to_csv(activities, csv_path, cols, csv_cols):
+def save_to_csv(
+    activities: List[Dict[str, Union[int, float, List[float]]]],
+    csv_path: str,
+    cols: List[str],
+    csv_cols: List[str],
+) -> None:
     """
     Saves the activity data to a CSV file.
 
     :param activities: The list of activity data.
-    :type activities: list
     :param csv_path: The path to the CSV file.
-    :type csv_path: str
     :param cols: The list of columns to include.
-    :type cols: list
     :param csv_cols: The corresponding CSV column names.
-    :type csv_cols: list
     """
     os.makedirs(os.path.dirname(csv_path), exist_ok=True)
     with open(csv_path, "w") as f:
