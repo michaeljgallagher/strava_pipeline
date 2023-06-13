@@ -54,7 +54,6 @@ def test_parse_activity():
 
 def test_save_to_csv():
     temppath = tempfile.NamedTemporaryFile().name
-    print(temppath)
     cols = [
         "distance",
         "total_elevation_gain",
@@ -108,7 +107,6 @@ def test_save_to_csv():
         reader = DictReader(f, delimiter="\u0001")
         header = reader.fieldnames
         rows = list(reader)
-        print(rows)
     assert header == csv_cols
     assert len(rows) == 2
     expected_rows = [
