@@ -1,9 +1,15 @@
-import os
 import tempfile
 from csv import DictReader
 
 import pytest
+
 from utils.flatfile import parse_activity, save_to_csv
+
+
+@pytest.fixture(scope="module")
+def temp_file():
+    with tempfile.NamedTemporaryFile() as temppath:
+        yield temppath.name
 
 
 def test_parse_activity():
@@ -52,8 +58,7 @@ def test_parse_activity():
     assert parse_activity(activity, cols) == {}
 
 
-def test_save_to_csv():
-    temppath = tempfile.NamedTemporaryFile().name
+def test_save_to_csv(temp_file):
     cols = [
         "distance",
         "total_elevation_gain",
@@ -102,11 +107,14 @@ def test_save_to_csv():
             "end_latlng": [-37.123, -64.99],
         },
     ]
-    save_to_csv(activities, temppath, cols, csv_cols)
-    with open(temppath) as f:
+
+    save_to_csv(activities, temp_file, cols, csv_cols)
+
+    with open(temp_file) as f:
         reader = DictReader(f, delimiter="\u0001")
         header = reader.fieldnames
         rows = list(reader)
+
     assert header == csv_cols
     assert len(rows) == 2
     expected_rows = [
@@ -138,4 +146,3 @@ def test_save_to_csv():
         },
     ]
     assert rows == expected_rows
-    os.remove(temppath)
