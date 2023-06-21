@@ -5,9 +5,10 @@ setup(
     version="0.1",
     packages=find_packages(),
     install_requires=open("requirements.txt").readlines(),
+    package_data={
+        "": ["pipeline.ini"],
+    },
     entry_points={
-        "console_scripts": [
-            "stravapipeline=strava_pipeline.main:main",
-        ],
+        "console_scripts": ["stravapipeline=strava_pipeline.main:main"],
     },
 )
