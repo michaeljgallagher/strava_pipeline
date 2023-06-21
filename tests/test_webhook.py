@@ -1,5 +1,5 @@
 import pytest
-from utils.webhook import Message, post_to_webhook
+from strava_pipeline.utils.webhook import Message, post_to_webhook
 
 
 def test_post_to_webhook(requests_mock):

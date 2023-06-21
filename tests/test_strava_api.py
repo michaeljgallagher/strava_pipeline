@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pytest
 import requests_mock
-from utils.strava_api import get_access_token, get_activities, get_start_date
+from strava_pipeline.utils.strava_api import get_access_token, get_activities, get_start_date
 
 
 @pytest.fixture

@@ -3,7 +3,7 @@ from csv import DictReader
 
 import pytest
 
-from utils.flatfile import parse_activity, save_to_csv
+from strava_pipeline.utils.flatfile import parse_activity, save_to_csv
 
 
 @pytest.fixture(scope="module")

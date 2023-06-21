@@ -1,5 +1,5 @@
 import pytest
-from utils.conversions import c_to_f, meters_to_feet, meters_to_miles, ms_to_mph
+from strava_pipeline.utils.conversions import c_to_f, meters_to_feet, meters_to_miles, ms_to_mph
 
 
 def test_meters_to_miles():

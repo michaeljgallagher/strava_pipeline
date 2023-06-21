@@ -2,7 +2,12 @@ import os
 from csv import DictWriter
 from typing import Dict, List, Union
 
-from utils.conversions import c_to_f, meters_to_feet, meters_to_miles, ms_to_mph
+from strava_pipeline.utils.conversions import (
+    c_to_f,
+    meters_to_feet,
+    meters_to_miles,
+    ms_to_mph,
+)
 
 
 def parse_activity(

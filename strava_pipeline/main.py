@@ -7,10 +7,18 @@ from datetime import datetime
 
 import psycopg2
 
-from utils.flatfile import save_to_csv
-from utils.postgres import get_most_recent, push_csv_to_postgres, push_last_start_date
-from utils.strava_api import get_access_token, get_activities, get_start_date
-from utils.webhook import Message, post_to_webhook
+from strava_pipeline.utils.flatfile import save_to_csv
+from strava_pipeline.utils.postgres import (
+    get_most_recent,
+    push_csv_to_postgres,
+    push_last_start_date,
+)
+from strava_pipeline.utils.strava_api import (
+    get_access_token,
+    get_activities,
+    get_start_date,
+)
+from strava_pipeline.utils.webhook import Message, post_to_webhook
 
 
 def main():

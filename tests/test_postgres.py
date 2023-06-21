@@ -3,7 +3,7 @@ import tempfile
 from unittest.mock import MagicMock
 
 import pytest
-from utils.postgres import get_most_recent, push_csv_to_postgres, push_last_start_date
+from strava_pipeline.utils.postgres import get_most_recent, push_csv_to_postgres, push_last_start_date
 
 
 @pytest.fixture
