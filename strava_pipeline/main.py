@@ -3,7 +3,7 @@ import logging
 import os
 import time
 from collections import namedtuple
-from datetime import datetime
+from datetime import UTC, datetime
 
 import psycopg2
 
@@ -13,6 +13,7 @@ from strava_pipeline.utils.postgres import (
     push_csv_to_postgres,
     push_last_start_date,
 )
+from strava_pipeline.utils.s3 import upload_to_s3
 from strava_pipeline.utils.strava_api import (
     get_access_token,
     get_activities,
@@ -38,7 +39,7 @@ def main():
     webhook_url = config.webhook.webhook_url
 
     # Get current time (UTC)
-    now = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    now = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
 
     # Set up logging
     os.makedirs(output_dirs.logs, exist_ok=True)
@@ -102,13 +103,35 @@ def main():
             )
             logger.info(f"Recorded {last_start_date} to history table.")
 
+            # Push csv to S3
+            logger.info(f"Uploading {output_dirs.csv}/{now}.csv to S3")
+            upload_to_s3(
+                f"{output_dirs.csv}/{now}.csv", config.s3.bucket_name, f"csvs/{now}.csv"
+            )
+
             # Post success message to webhook
             post_to_webhook(webhook_url, Message.success_message(len(activities), now))
             logger.info("Strava pipeline completed successfully")
 
+            # Push log to S3
+            logger.info(f"Uploading {output_dirs.logs}/{now}.log to S3")
+            upload_to_s3(
+                f"{output_dirs.logs}/{now}.log",
+                config.s3.bucket_name,
+                f"logs/{now}.log",
+            )
+
     except Exception as e:
         logger.exception("An error occurred during Strava pipeline:\n" + str(e))
+
         post_to_webhook(webhook_url, Message.error_message(now))
+
+        logger.info(f"Uploading {output_dirs.logs}/{now}.log to S3")
+        upload_to_s3(
+            f"{output_dirs.logs}/{now}.log",
+            config.s3.bucket_name,
+            f"logs/{now}.log",
+        )
 
 
 if __name__ == "__main__":

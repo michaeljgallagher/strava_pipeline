@@ -38,7 +38,7 @@ class Message:
     @staticmethod
     def no_records_message() -> str:
         """
-        Returns a message indicating that no new activities were found on today's Strava pipeline run.
+        Returns a message indicating that no new activities were found on pipeline run.
 
         :return: The message.
         """
