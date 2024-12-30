@@ -1,7 +1,7 @@
 boto3==1.35.82
 botocore==1.35.82
 certifi==2024.12.14
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
 idna==3.10
 iniconfig==2.0.0
 jmespath==1.0.1
