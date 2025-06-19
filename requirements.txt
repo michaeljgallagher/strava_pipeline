@@ -12,4 +12,4 @@ requests==2.32.4
 requests-mock==1.12.1
 s3transfer==0.13.0
 six==1.17.0
-urllib3==2.4.0
+urllib3==2.5.0
