@@ -1,4 +1,4 @@
-boto3==1.39.4
+boto3==1.39.10
 botocore==1.39.4
 idna==3.10
 iniconfig==2.1.0
