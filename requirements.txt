@@ -1,4 +1,4 @@
-boto3==1.40.21
+boto3==1.40.25
 idna==3.10
 iniconfig==2.1.0
 jmespath==1.0.1
