@@ -1,5 +1,5 @@
 boto3==1.42.92
-idna==3.11
+idna==3.13
 iniconfig==2.3.0
 jmespath==1.1.0
 packaging==26.1
