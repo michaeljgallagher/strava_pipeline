@@ -1,5 +1,5 @@
 idna==3.16
-boto3==1.43.14
+boto3==1.43.20
 iniconfig==2.3.0
 jmespath==1.1.0
 packaging==26.2
