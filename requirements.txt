@@ -1,4 +1,4 @@
-idna==3.18
+idna==3.19
 boto3==1.43.77
 iniconfig==2.3.0
 jmespath==1.1.0
