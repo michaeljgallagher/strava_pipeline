@@ -3,7 +3,7 @@ boto3==1.43.114
 iniconfig==2.3.1
 jmespath==1.1.0
 packaging==26.3
-pluggy==1.6.0
+pluggy==1.7.0
 psycopg2==2.9.13
 pytest==9.1.1
 python-dateutil==2.9.0.post0
