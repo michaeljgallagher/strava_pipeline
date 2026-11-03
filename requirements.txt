@@ -9,6 +9,6 @@ pytest==9.2.0
 python-dateutil==3.0.0
 requests==2.34.2
 requests-mock==1.12.1
-s3transfer==0.19.2
+s3transfer==0.19.3
 six==1.17.0
 urllib3==2.8.0
